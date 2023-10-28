@@ -1,4 +1,5 @@
 open terminal
+cd C:\Users\danie\OneDrive\Documents\CS
 .\env\Scripts\activate
 cd RateMyDiningHall
 python manage.py runserver
