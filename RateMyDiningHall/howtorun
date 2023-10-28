@@ -1,0 +1,5 @@
+open terminal
+.\env\Scripts\activate
+cd RateMyDiningHall
+python manage.py runserver
+CNTRL C to exit env
