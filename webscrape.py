@@ -1,19 +1,24 @@
-from flask import Flask, render_template
+import mysql.connector
 from bs4 import BeautifulSoup
 import requests
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="!DaNiEl1807",
+    database="menu_db"
+)
+mycursor = mydb.cursor()
 
-app=Flask(__name__)
+sql="INSERT IGNORE INTO food(name,category) VALUES(%s,%s)"
 
 #get URL from UCR dining hall menu
 page_to_scrape = requests.get("https://foodpro.ucr.edu/foodpro/shortmenu.asp?sName=University+of+California%2C+Riverside+Dining+Services&locationNum=03&locationName=Glasgow&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=10%2F20%2F2023")
 soup = BeautifulSoup(page_to_scrape.text, "html.parser")
 
 #scrape daily food menu
-menu = soup.findAll("div", attrs={"class":"shortmenurecipes"})
+for food in soup.findAll("a", attrs={"name":"Recipe_Desc"}):
+    val=(food.text, "")
+    mycursor.execute(sql,val)
 
-@app.route('/')
-def home():
-    return render_template('index.html', menu=menu)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+mydb.commit()
+#menu = soup.findAll("a", attrs={"name":"Recipe_Desc"})

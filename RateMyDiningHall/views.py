@@ -3,21 +3,30 @@ from bs4 import BeautifulSoup
 import requests
 
 def home(request):
+    menu_data = None
+    menu_data_list = ""
     if 'lothian' in request.GET:
         #get URL from UCR dining hall menu
-        page_to_scrape = requests.get("https://foodpro.ucr.edu/foodpro/shortmenu.asp?sName=University+of+California%2C+Riverside+Dining+Services&locationNum=03&locationName=Glasgow&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=10%2F20%2F2023")
+        page_to_scrape = requests.get("https://foodpro.ucr.edu/foodpro/shortmenu.asp?sName=University+of+California%2C+Riverside+Dining+Services&locationNum=02&locationName=Lothian+Residential+Restaurant&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=10%2F28%2F2023")
         soup = BeautifulSoup(page_to_scrape.text, "html.parser")
 
         #scrape daily food menu
-        menu = soup.findAll("div", attrs={"class":"shortmenurecipes"})
+        menu_data = dict()
+        for food in soup.findAll("a", attrs={"name":"Recipe_Desc"}):
+            menu_data_list += food.text + "\n"
+        menu_data['food'] = menu_data_list
         pass
     
     if 'glasgow' in request.GET:
         #get URL from UCR dining hall menu
-        page_to_scrape = requests.get("https://foodpro.ucr.edu/foodpro/shortmenu.asp?sName=University%20of%20California%2C%20Riverside%20Dining%20Services&locationNum=02&locationName=Lothian%20Residential%20Restaurant&naFlag=1&_gl=1*152ppae*_ga*NTQ4ODY0ODA5LjE2ODQxODUxNDQ.*_ga_S8BZQKWST2*MTY5ODQ2OTg1My44MC4wLjE2OTg0Njk5MjEuMC4wLjA.*_ga_Z1RGSBHBF7*MTY5ODQ2OTg1My44MC4wLjE2OTg0Njk5MjEuMC4wLjA.")
+        page_to_scrape = requests.get("https://foodpro.ucr.edu/foodpro/shortmenu.asp?sName=University+of+California%2C+Riverside+Dining+Services&locationNum=03&locationName=Glasgow&naFlag=1&WeeksMenus=This+Week%27s+Menus&myaction=read&dtdate=11%2F10%2F2023")
         soup = BeautifulSoup(page_to_scrape.text, "html.parser")
 
         #scrape daily food menu
-        menu = soup.findAll("div", attrs={"class":"shortmenurecipes"})
+        menu_data = dict()
+        for food in soup.findAll("a", attrs={"name":"Recipe_Desc"}):
+            menu_data_list += food.text 
+        menu_data['food'] = menu_data_list
         pass
-    return render(request, 'index.html')
+    
+    return render(request, 'index.html', {'menu':menu_data})

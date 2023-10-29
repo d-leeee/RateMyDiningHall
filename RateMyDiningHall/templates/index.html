@@ -3,16 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="static/css/base.css" />
-    <title>Rate My Dining Hall Food</title>
+    <title>Rate My Dining Hall</title>
   </head>
   <body>
-    <h1>Rate My Dining Hall Food</h1>
+    <h1>Rate My Dining Hall</h1>
     <p>Today's Menu</p>
     <form method="GET">
       <p></p>
       <button name="lothian" id="lothian">Lothian</button>
       <button name="glasgow" id="glasgow">Glasgow</button>
     </form>
+    {% if menu %}
+      <h3>{{ menu.food }}</h3>
+    {% endif %}
     </body>
     <p></p>
   </body>
