@@ -1,0 +1,28 @@
+body {
+    text-align: center;
+    padding: 70px 0;
+}
+* {
+    box-sizing: border-box;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+    padding: 5px;
+}
+
+table {
+     border-collapse: separate; line-height:25px;
+}
+
+tr { 
+    display: block; float: left; width:200px;
+}
+
+th,  td { 
+    display: block; 
+}

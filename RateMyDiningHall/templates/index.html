@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="static/css/base.css" />
+    <link rel="stylesheet" href="static/base.css" />
     <title>Rate My Dining Hall</title>
   </head>
   <body>
@@ -13,9 +13,41 @@
       <button name="lothian" id="lothian">Lothian</button>
       <button name="glasgow" id="glasgow">Glasgow</button>
     </form>
-    {% if menu %}
-      <h3>{{ menu.food }}</h3>
-    {% endif %}
+    <br><br>
+    <center>
+      <div class="row">
+        <div class="column">
+          <table>
+            <tr>
+              <th>Breakfast</th>
+              {% for f in breakfast %} 
+                <td>{{ f }}</td>
+              {% endfor %}
+            </tr>
+          </table>
+        </div>
+        <div class="column">
+        <table>
+          <tr>
+            <th>Lunch</th>
+            {% for f in lunch %} 
+              <td>{{ f }}</td>
+            {% endfor %}
+          </tr>
+        </table>
+        </div>
+        <div class="column">
+          <table>
+            <tr>
+              <th>Dinner</th>
+              {% for f in dinner %} 
+                <td>{{ f }}</td>
+              {% endfor %}
+            </tr>
+          </table>
+        </div>
+      </div>
+    </center>
     </body>
     <p></p>
   </body>
