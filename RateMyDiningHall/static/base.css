@@ -6,8 +6,29 @@ body {
     box-sizing: border-box;
 }
 
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    line-height:25px; border:1px;  
+    white-space:nowrap;
+    text-align: center;
+    width: 100%;
+    border: 1px solid black;
+}
+
+tr { 
+   display: block; 
+}
+
+th,  td { 
+   display: block;
+   text-align: center;
+}
+
 .row {
     display: flex;
+    margin-left:-5px;
+    margin-right:-5px;
 }
 
 .column {
@@ -15,14 +36,3 @@ body {
     padding: 5px;
 }
 
-table {
-     border-collapse: separate; line-height:25px;
-}
-
-tr { 
-    display: block; float: left; width:200px;
-}
-
-th,  td { 
-    display: block; 
-}
