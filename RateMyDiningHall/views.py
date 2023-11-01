@@ -181,7 +181,7 @@ def home(request):
                                           'ThreeSixtyGrillLunch': menu_three_sixty_grill_lunch,
                                           'TheCarveryLunch': menu_the_carvery_lunch,
                                           'SweetsAndTreatsLunch': menu_sweets_and_treats_lunch,
-                                          'BuildYourOwnVeganGrillLunch': menu_build_your_own_vegan_bowl_lunch,
+                                          'BuildYourOwnVeganBowlLunch': menu_build_your_own_vegan_bowl_lunch,
                                           
                                           'SaladDeliAndMoreDinner': menu_salad_deli_and_more_dinner,
                                           'WokKitchenDinner': menu_wok_kitchen_dinner,
@@ -189,4 +189,4 @@ def home(request):
                                           'ThreeSixtyGrillDinner': menu_three_sixty_grill_dinner,
                                           'TheCarveryDinner': menu_the_carvery_dinner,
                                           'SweetsAndTreatsDinner': menu_sweets_and_treats_dinner,
-                                          'BuildYourOwnVeganGrillDinner': menu_build_your_own_vegan_bowl_dinner,})
+                                          'BuildYourOwnVeganBowlDinner': menu_build_your_own_vegan_bowl_dinner,})

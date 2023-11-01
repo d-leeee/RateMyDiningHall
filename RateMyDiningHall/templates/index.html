@@ -20,8 +20,17 @@
           <table>
             <tr>
               <th>Breakfast</th>
-              {% for f in breakfast %} 
-                <td>{{ f }}</td>
+              <th>Fresh Baked Pastries</th>
+              {% for food in FreshBakedPastries %} 
+                <td>{{ food }}</td>
+              {% endfor %}
+              <th>Cereal Station</th>
+              {% for food in CerealStation %} 
+                <td>{{ food }}</td>
+              {% endfor %}
+              <th>Breakfast Offerings</th>
+              {% for food in BreakfastOfferings %} 
+                <td>{{ food }}</td>
               {% endfor %}
             </tr>
           </table>
@@ -30,9 +39,30 @@
         <table>
           <tr>
             <th>Lunch</th>
-            {% for f in lunch %} 
-              <td>{{ f }}</td>
+            <th>Salad, Deli, and More</th>
+            {% for food in SaladDeliAndMoreLunch %} 
+                <td>{{ food }}</td>
             {% endfor %}
+            <th>Wok Kitchen</th>
+            {% for food in WokKitchenLunch %} 
+                <td>{{ food }}</td>
+            {% endfor %}
+            <th>Three-Sixty Grill</th>
+            {% for food in ThreeSixtyGrillLunch %} 
+                <td>{{ food }}</td>
+            {% endfor %}
+            <th>The Carvery</th>
+              {% for food in TheCarveryLunch %} 
+                <td>{{ food }}</td>
+              {% endfor %}
+              <th>Sweets And Treats</th>
+              {% for food in SweetsAndTreatsLunch %} 
+                <td>{{ food }}</td>
+              {% endfor %}
+              <th>Build Your Own Vegan Bowl</th>
+              {% for food in BuildYourOwnVeganBowlLunch %} 
+                <td>{{ food }}</td>
+              {% endfor %}
           </tr>
         </table>
         </div>
@@ -40,8 +70,29 @@
           <table>
             <tr>
               <th>Dinner</th>
-              {% for f in dinner %} 
-                <td>{{ f }}</td>
+              <th>Salad, Deli, and More</th>
+            {% for food in SaladDeliAndMoreDinner %} 
+                <td>{{ food }}</td>
+            {% endfor %}
+            <th>Wok Kitchen</th>
+            {% for food in WokKitchenDinner %} 
+                <td>{{ food }}</td>
+            {% endfor %}
+            <th>Three-Sixty Grill</th>
+            {% for food in ThreeSixtyGrillDinner %} 
+                <td>{{ food }}</td>
+            {% endfor %}
+            <th>The Carvery</th>
+              {% for food in TheCarveryDinner %} 
+                <td>{{ food }}</td>
+              {% endfor %}
+              <th>Sweets And Treats</th>
+              {% for food in SweetsAndTreatsDinner %} 
+                <td>{{ food }}</td>
+              {% endfor %}
+              <th>Build Your Own Vegan Bowl</th>
+              {% for food in BuildYourOwnVeganBowlDinner %} 
+                <td>{{ food }}</td>
               {% endfor %}
             </tr>
           </table>
