@@ -7,19 +7,15 @@
   </head>
   <body>
     <h1>Rate My Dining Hall</h1>
-    <p>Today's Menu</p>
-    <form method="GET">
-      <p></p>
-      <button name="glasgow" id="glasgow" >Glasgow</button>
-    </form>
+    <h2>Today's Menu</p></h2>
     <br><br>
     <center>
-      <p>Glasgow Menu</p>
+      <h2>Glasgow Menu</h2>
       <div class="row">
         <div class="column">
           <table>
             <tr>
-              <th>Breakfast</th>
+              <h2>Breakfast</h2>
               <th>Fresh Baked Pastries</th>
               {% for food in FreshBakedPastries %} 
                 <td>{{ food }}</td>
@@ -38,7 +34,7 @@
         <div class="column">
         <table>
           <tr>
-            <th>Lunch</th>
+            <h2>Lunch</h2>
             <th>Salad, Deli, and More</th>
             {% for food in SaladDeliAndMoreLunch %} 
                 <td>{{ food }}</td>
@@ -69,7 +65,7 @@
         <div class="column">
           <table>
             <tr>
-              <th>Dinner</th>
+              <h2>Dinner</h2>
               <th>Salad, Deli, and More</th>
             {% for food in SaladDeliAndMoreDinner %} 
                 <td>{{ food }}</td>
@@ -98,12 +94,12 @@
           </table>
         </div>
       </div>
-      <p>Lothian Menu</p>
+      <h2>Lothian Menu</h2>
       <div class="row">
         <div class="column">
         <table>
           <tr>
-            <th>Lunch</th>
+            <h2>Lunch</h2>
             <th>Build Your Own Bowl</th>
             {% for food in BuildYourOwnBowlLunch %} 
                 <td>{{ food }}</td>
@@ -142,7 +138,7 @@
         <div class="column">
           <table>
             <tr>
-              <th>Dinner</th>
+              <h2>Dinner</h2>
               <th>Build Your Own Bowl</th>
               {% for food in BuildYourOwnBowlDinner %} 
                   <td>{{ food }}</td>
