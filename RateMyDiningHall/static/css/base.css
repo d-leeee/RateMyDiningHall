@@ -25,10 +25,12 @@ th {
     display: block;
     text-align: center;
     line-height:30px; 
+    font-size: large;
 }
 td { 
    display: block;
    text-align: center;
+   font-size:small;
 }
 
 .row {
