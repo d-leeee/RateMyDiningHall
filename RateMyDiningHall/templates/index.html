@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="static/base.css" />
+    <link rel="stylesheet" href="static/css/base.css" />  
     <title>Rate My Dining Hall</title>
   </head>
   <body>
@@ -10,11 +10,11 @@
     <p>Today's Menu</p>
     <form method="GET">
       <p></p>
-      <button name="lothian" id="lothian">Lothian</button>
-      <button name="glasgow" id="glasgow">Glasgow</button>
+      <button name="glasgow" id="glasgow" >Glasgow</button>
     </form>
     <br><br>
     <center>
+      <p>Glasgow Menu</p>
       <div class="row">
         <div class="column">
           <table>
@@ -52,17 +52,17 @@
                 <td>{{ food }}</td>
             {% endfor %}
             <th>The Carvery</th>
-              {% for food in TheCarveryLunch %} 
-                <td>{{ food }}</td>
-              {% endfor %}
-              <th>Sweets And Treats</th>
-              {% for food in SweetsAndTreatsLunch %} 
-                <td>{{ food }}</td>
-              {% endfor %}
-              <th>Build Your Own Vegan Bowl</th>
-              {% for food in BuildYourOwnVeganBowlLunch %} 
-                <td>{{ food }}</td>
-              {% endfor %}
+            {% for food in TheCarveryLunch %} 
+              <td>{{ food }}</td>
+            {% endfor %}
+            <th>Sweets And Treats</th>
+            {% for food in SweetsAndTreatsLunch %} 
+              <td>{{ food }}</td>
+            {% endfor %}
+            <th>Build Your Own Vegan Bowl</th>
+            {% for food in BuildYourOwnVeganBowlLunch %} 
+              <td>{{ food }}</td>
+            {% endfor %}
           </tr>
         </table>
         </div>
@@ -83,20 +83,101 @@
                 <td>{{ food }}</td>
             {% endfor %}
             <th>The Carvery</th>
-              {% for food in TheCarveryDinner %} 
+            {% for food in TheCarveryDinner %} 
+              <td>{{ food }}</td>
+            {% endfor %}
+            <th>Sweets And Treats</th>
+            {% for food in SweetsAndTreatsDinner %} 
+              <td>{{ food }}</td>
+            {% endfor %}
+            <th>Build Your Own Vegan Bowl</th>
+            {% for food in BuildYourOwnVeganBowlDinner %} 
+              <td>{{ food }}</td>
+            {% endfor %}
+            </tr>
+          </table>
+        </div>
+      </div>
+      <p>Lothian Menu</p>
+      <div class="row">
+        <div class="column">
+        <table>
+          <tr>
+            <th>Lunch</th>
+            <th>Build Your Own Bowl</th>
+            {% for food in BuildYourOwnBowlLunch %} 
+                <td>{{ food }}</td>
+            {% endfor %}
+            <th>Soup And Deli Bar</th>
+            {% for food in SoupAndDeliBarLunch %} 
+                <td>{{ food }}</td>
+            {% endfor %}
+            <th>Global Sizzle</th>
+            {% for food in GlobalSizzleLunch %} 
+                <td>{{ food }}</td>
+            {% endfor %}
+            <th>Urban Kitchen</th>
+            {% for food in UrbanKitchenLunch %} 
+              <td>{{ food }}</td>
+            {% endfor %}
+            <th>The Grill</th>
+            {% for food in TheGrillLunch %} 
+              <td>{{ food }}</td>
+            {% endfor %}
+            <th>Comfort Table</th>
+            {% for food in ComfortTableLunch %} 
+              <td>{{ food }}</td>
+            {% endfor %}
+            <th>Desserts</th>
+            {% for food in DessertsLunch %} 
+              <td>{{ food }}</td>
+            {% endfor %}
+            <th>Village Garden</th>
+            {% for food in VillageGardenLunch %} 
+              <td>{{ food }}</td>
+            {% endfor %}
+          </tr>
+        </table>
+        </div>
+        <div class="column">
+          <table>
+            <tr>
+              <th>Dinner</th>
+              <th>Build Your Own Bowl</th>
+              {% for food in BuildYourOwnBowlDinner %} 
+                  <td>{{ food }}</td>
+              {% endfor %}
+              <th>Soup And Deli Bar</th>
+              {% for food in SoupAndDeliBarDinner %} 
+                  <td>{{ food }}</td>
+              {% endfor %}
+              <th>Global Sizzle</th>
+              {% for food in GlobalSizzleDinner %} 
+                  <td>{{ food }}</td>
+              {% endfor %}
+              <th>Urban Kitchen</th>
+              {% for food in UrbanKitchenDinner %} 
                 <td>{{ food }}</td>
               {% endfor %}
-              <th>Sweets And Treats</th>
-              {% for food in SweetsAndTreatsDinner %} 
+              <th>The Grill</th>
+              {% for food in TheGrillDinner %} 
                 <td>{{ food }}</td>
               {% endfor %}
-              <th>Build Your Own Vegan Bowl</th>
-              {% for food in BuildYourOwnVeganBowlDinner %} 
+              <th>Comfort Table</th>
+              {% for food in ComfortTableDinner %} 
+                <td>{{ food }}</td>
+              {% endfor %}
+              <th>Desserts</th>
+              {% for food in DessertsDinner %} 
+                <td>{{ food }}</td>
+              {% endfor %}
+              <th>Village Garden</th>
+              {% for food in VillageGardenDinner %} 
                 <td>{{ food }}</td>
               {% endfor %}
             </tr>
           </table>
-        </div>
+          </div>
       </div>
     </center>
     </body>

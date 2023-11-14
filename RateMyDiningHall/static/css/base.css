@@ -1,6 +1,7 @@
 body {
     text-align: center;
     padding: 70px 0;
+    display: block;
 }
 * {
     box-sizing: border-box;
@@ -24,10 +25,6 @@ th,  td {
    text-align: center;
 }
 
-th {
-    
-}
-
 .row {
     display: flex;
     margin-left:-5px;
@@ -38,4 +35,3 @@ th {
     flex: 50%;
     padding: 5px;
 }
-

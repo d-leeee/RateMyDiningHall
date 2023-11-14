@@ -67,108 +67,141 @@ import functools
 
 def home(request):
 
-    
     page_to_scrape = None
-
-    # if lothian, get request from lothian menu
-    if 'lothian' in request.GET:
-        menu_data_breakfast = []
-        menu_data_lunch = []
-        menu_data_dinner = []
-        # get request from url
-        page_to_scrape = requests.get("https://foodpro.ucr.edu/foodpro/shortmenu.asp?sName=University%20of%20California%2C%20Riverside%20Dining%20Services&locationNum=02&locationName=Lothian%20Residential%20Restaurant&naFlag=1&_gl=1*157j69u*_ga*NTQ4ODY0ODA5LjE2ODQxODUxNDQ.*_ga_S8BZQKWST2*MTY5ODU1ODE0Mi44NC4xLjE2OTg1NTgzMTcuMC4wLjA.*_ga_Z1RGSBHBF7*MTY5ODU1ODE0Mi44NC4xLjE2OTg1NTgzMTcuMC4wLjA.")
-        soup = BeautifulSoup(page_to_scrape.text, "html.parser")
-
-        # scrape for data and put into db for breakfast, lunch, and dinner
-        full_table = soup.find("table", attrs={"bordercolorlight": "black"})
-        food_day_tables = full_table.findAll("td", attrs={"width": "30%"})
-        for table in food_day_tables:
-            food_day = table.find(
-                "div", attrs={"class": "shortmenumeals"}).text
-            foods = table.findAll('a', attrs={"name": "Recipe_Desc"})
-            if food_day == "Breakfast":
-                for food in foods:
-                    menu_data_breakfast.append(food.text)
-            elif food_day == "Lunch":
-                for food in foods:
-                    menu_data_lunch.append(food.text)
-            elif food_day == "Dinner":
-                for food in foods:
-                    menu_data_dinner.append(food.text)
-
     # if glasgow, get request from glasgow menu
-    if 'glasgow' in request.GET:
-        
-        # keep these variables at none so that we dont get unassigned errors
-        menu_salad_deli_and_more_lunch = np.array([])
-        menu_wok_kitchen_lunch = np.array([])
-        menu_hot_plate_lunch = np.array([])
-        menu_three_sixty_grill_lunch = np.array([])
-        menu_the_carvery_lunch = np.array([])
-        menu_sweets_and_treats_lunch = np.array([])
-        menu_build_your_own_vegan_bowl_lunch = np.array([])
-        
-        menu_salad_deli_and_more_dinner = np.array([])
-        menu_wok_kitchen_dinner = np.array([])
-        menu_hot_plate_dinner = np.array([])
-        menu_three_sixty_grill_dinner = np.array([])
-        menu_the_carvery_dinner = np.array([])
-        menu_sweets_and_treats_dinner = np.array([])
-        menu_build_your_own_vegan_bowl_dinner = np.array([])
-        
-        menu_fresh_baked_pastries = np.array([])
-        menu_cereal_station = np.array([])
-        menu_breakfast_offerings = np.array([])
-        
-        menu_data_breakfast_temp = []
-        menu_data_lunch_temp = []
-        menu_data_dinner_temp = []
-        
-        # get request from url
-        page_to_scrape = requests.get("https://foodpro.ucr.edu/foodpro/shortmenu.asp?sName=University%20of%20California%2C%20Riverside%20Dining%20Services&locationNum=03&locationName=Glasgow&naFlag=1&_gl=1*1iyhhso*_ga*NTQ4ODY0ODA5LjE2ODQxODUxNDQ.*_ga_S8BZQKWST2*MTY5ODU1ODE0Mi44NC4xLjE2OTg1NTgxNDUuMC4wLjA.*_ga_Z1RGSBHBF7*MTY5ODU1ODE0Mi44NC4xLjE2OTg1NTgxNDUuMC4wLjA.")
-        soup = BeautifulSoup(page_to_scrape.text, "html.parser")
 
-        # scrape for data and put into db
-        full_table = soup.find("table", attrs={"bordercolorlight": "black"})
-        food_day_tables = full_table.findAll("td", attrs={"width": "30%"})
-        
-        for table in food_day_tables:
-            food_day = table.find("div", attrs={"class": "shortmenumeals"}).text #time of day
-            foods = table.findAll('a', attrs={"name": "Recipe_Desc"}) #each food
-            food_rows = table.findAll('div')
-            for category in food_rows:
-                if food_day == "Breakfast":
-                    if category['class'][0] == 'shortmenucats' or category['class'][0] == 'shortmenurecipes':
-                        menu_data_breakfast_temp.append(category.text)
-                elif food_day == "Lunch":
-                    if category['class'][0] == 'shortmenucats' or category['class'][0] == 'shortmenurecipes':
-                        menu_data_lunch_temp.append(category.text)
-                elif food_day == "Dinner":
-                    if category['class'][0] == 'shortmenucats' or category['class'][0] == 'shortmenurecipes':
-                        menu_data_dinner_temp.append(category.text)
-                        
-        #breakfast category append
-        menu_fresh_baked_pastries = np.append(menu_data_breakfast_temp[menu_data_breakfast_temp.index('-- Fresh Baked Pastries --')+1:menu_data_breakfast_temp.index('-- Cereal Station --')], menu_fresh_baked_pastries)
-        menu_cereal_station = np.append(menu_data_breakfast_temp[menu_data_breakfast_temp.index('-- Cereal Station --')+1:menu_data_breakfast_temp.index('-- Breakfast Offerings --')], menu_cereal_station)
-        menu_breakfast_offerings = np.append(menu_data_breakfast_temp[menu_data_breakfast_temp.index('-- Breakfast Offerings --')+1:len(menu_data_breakfast_temp)], menu_breakfast_offerings)
-        
-        #lunch category append
-        menu_salad_deli_and_more_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Salad, Deli and More --')+1:menu_data_lunch_temp.index('-- Wok Kitchen --')], menu_salad_deli_and_more_lunch)
-        menu_wok_kitchen_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Wok Kitchen --')+1:menu_data_lunch_temp.index('-- Hot Plate --')], menu_wok_kitchen_lunch)
-        menu_hot_plate_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Hot Plate --')+1:menu_data_lunch_temp.index('-- Three-Sixty Grill --')], menu_hot_plate_lunch)
-        menu_three_sixty_grill_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Three-Sixty Grill --')+1:menu_data_lunch_temp.index('-- The Carvery --')], menu_three_sixty_grill_lunch)
-        menu_the_carvery_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- The Carvery --')+1:menu_data_lunch_temp.index('-- Sweets & Treats --')], menu_the_carvery_lunch)
-        menu_sweets_and_treats_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Sweets & Treats --')+1:menu_data_lunch_temp.index('-- Build Your Own Vegan Bowl --')],menu_sweets_and_treats_lunch)
-        menu_build_your_own_vegan_bowl_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Build Your Own Vegan Bowl --')+1:len(menu_data_lunch_temp)], menu_build_your_own_vegan_bowl_lunch)
-        
-        #dinner category append
-        menu_salad_deli_and_more_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Salad, Deli and More --')+1:menu_data_dinner_temp.index('-- Wok Kitchen --')], menu_salad_deli_and_more_dinner)
-        menu_wok_kitchen_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Wok Kitchen --')+1:menu_data_dinner_temp.index('-- Hot Plate --')], menu_wok_kitchen_dinner)
-        menu_hot_plate_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Hot Plate --')+1:menu_data_dinner_temp.index('-- Three-Sixty Grill --')], menu_hot_plate_dinner)
-        menu_three_sixty_grill_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Three-Sixty Grill --')+1:menu_data_dinner_temp.index('-- The Carvery --')], menu_three_sixty_grill_dinner)
-        menu_the_carvery_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- The Carvery --')+1:menu_data_dinner_temp.index('-- Sweets & Treats --')], menu_the_carvery_dinner)
-        menu_sweets_and_treats_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Sweets & Treats --')+1:menu_data_dinner_temp.index('-- Build Your Own Vegan Bowl --')],menu_sweets_and_treats_dinner)
-        menu_build_your_own_vegan_bowl_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Build Your Own Vegan Bowl --')+1:len(menu_data_dinner_temp)], menu_build_your_own_vegan_bowl_dinner)
+    # keep these variables at none so that we dont get unassigned errors
+    menu_build_your_own_bowl_lunch = np.array([])
+    menu_soup_and_deli_bar_lunch = np.array([])
+    menu_global_sizzle_lunch = np.array([])
+    menu_urban_kitchen_lunch = np.array([])
+    menu_the_grill_lunch = np.array([])
+    menu_comfort_table_lunch = np.array([])
+    menu_desserts_lunch = np.array([])
+    menu_village_garden_lunch = np.array([])
+    
+    menu_build_your_own_bowl_dinner = np.array([])
+    menu_soup_and_deli_bar_dinner = np.array([])
+    menu_global_sizzle_dinner = np.array([])
+    menu_urban_kitchen_dinner = np.array([])
+    menu_the_grill_dinner = np.array([])
+    menu_comfort_table_dinner = np.array([])
+    menu_desserts_dinner = np.array([])
+    menu_village_garden_dinner = np.array([])
+    
+    menu_data_lunch_temp = []
+    menu_data_dinner_temp = []
+    
+    # get request from url
+    page_to_scrape = requests.get("https://foodpro.ucr.edu/foodpro/shortmenu.asp?sName=University%20of%20California%2C%20Riverside%20Dining%20Services&locationNum=02&locationName=Lothian%20Residential%20Restaurant&naFlag=1&_gl=1*1hlufbx*_ga*NTQ4ODY0ODA5LjE2ODQxODUxNDQ.*_ga_S8BZQKWST2*MTY5OTk1Nzc3Mi4xMDYuMS4xNjk5OTU5NTUxLjAuMC4w*_ga_Z1RGSBHBF7*MTY5OTk1Nzc3Mi4xMDYuMS4xNjk5OTU5NTUxLjAuMC4w")
+    soup = BeautifulSoup(page_to_scrape.text, "html.parser")
+
+    # scrape for data and put into db
+    full_table = soup.find("table", attrs={"bordercolorlight": "black"})
+    food_day_tables = full_table.findAll("td", attrs={"width": "30%"})
+    
+    for table in food_day_tables:
+        food_day = table.find("div", attrs={"class": "shortmenumeals"}).text #time of day
+        foods = table.findAll('a', attrs={"name": "Recipe_Desc"}) #each food
+        food_rows = table.findAll('div')
+        for category in food_rows:
+            if food_day == "Lunch":
+                if category['class'][0] == 'shortmenucats' or category['class'][0] == 'shortmenurecipes':
+                    menu_data_lunch_temp.append(category.text)
+            elif food_day == "Dinner":
+                if category['class'][0] == 'shortmenucats' or category['class'][0] == 'shortmenurecipes':
+                    menu_data_dinner_temp.append(category.text)
+    
+    #lunch category append
+    menu_build_your_own_bowl_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- BYOB (Build Your Own Bowl) --')+1:menu_data_lunch_temp.index('-- Soup & Deli Bar --')], menu_build_your_own_bowl_lunch)
+    menu_soup_and_deli_bar_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Soup & Deli Bar --')+1:menu_data_lunch_temp.index('-- Global Sizzle --')], menu_soup_and_deli_bar_lunch)
+    menu_global_sizzle_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Global Sizzle --')+1:menu_data_lunch_temp.index('-- Urban Kitchen --')], menu_global_sizzle_lunch)
+    menu_urban_kitchen_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Urban Kitchen --')+1:menu_data_lunch_temp.index('-- The Grill --')], menu_urban_kitchen_lunch)
+    menu_the_grill_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- The Grill --')+1:menu_data_lunch_temp.index('-- Comfort Table --')], menu_the_grill_lunch)
+    menu_comfort_table_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Comfort Table --')+1:menu_data_lunch_temp.index('-- Desserts --')],menu_comfort_table_lunch)
+    menu_desserts_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Desserts --')+1:menu_data_lunch_temp.index('-- Village Garden --')],menu_desserts_lunch)
+    menu_village_garden_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Village Garden --')+1:len(menu_data_lunch_temp)], menu_village_garden_lunch)
+
+    #dinner category append
+    menu_build_your_own_bowl_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- BYOB (Build Your Own Bowl) --')+1:menu_data_dinner_temp.index('-- Soup & Deli Bar --')], menu_build_your_own_bowl_dinner)
+    menu_soup_and_deli_bar_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Soup & Deli Bar --')+1:menu_data_dinner_temp.index('-- Global Sizzle --')], menu_soup_and_deli_bar_dinner)
+    menu_global_sizzle_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Global Sizzle --')+1:menu_data_dinner_temp.index('-- Urban Kitchen --')], menu_global_sizzle_dinner)
+    menu_urban_kitchen_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Urban Kitchen --')+1:menu_data_dinner_temp.index('-- The Grill --')], menu_urban_kitchen_dinner)
+    menu_the_grill_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- The Grill --')+1:menu_data_dinner_temp.index('-- Comfort Table --')], menu_the_grill_dinner)
+    menu_comfort_table_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Comfort Table --')+1:menu_data_dinner_temp.index('-- Desserts --')],menu_comfort_table_dinner)
+    menu_desserts_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Desserts --')+1:menu_data_dinner_temp.index('-- Village Garden --')],menu_desserts_dinner)
+    menu_village_garden_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Village Garden --')+1:len(menu_data_dinner_temp)], menu_village_garden_dinner)
+    
+    # keep these variables at none so that we dont get unassigned errors
+    menu_salad_deli_and_more_lunch = np.array([])
+    menu_wok_kitchen_lunch = np.array([])
+    menu_hot_plate_lunch = np.array([])
+    menu_three_sixty_grill_lunch = np.array([])
+    menu_the_carvery_lunch = np.array([])
+    menu_sweets_and_treats_lunch = np.array([])
+    menu_build_your_own_vegan_bowl_lunch = np.array([])
+    
+    menu_salad_deli_and_more_dinner = np.array([])
+    menu_wok_kitchen_dinner = np.array([])
+    menu_hot_plate_dinner = np.array([])
+    menu_three_sixty_grill_dinner = np.array([])
+    menu_the_carvery_dinner = np.array([])
+    menu_sweets_and_treats_dinner = np.array([])
+    menu_build_your_own_vegan_bowl_dinner = np.array([])
+    
+    menu_fresh_baked_pastries = np.array([])
+    menu_cereal_station = np.array([])
+    menu_breakfast_offerings = np.array([])
+    
+    menu_data_breakfast_temp = []
+    menu_data_lunch_temp = []
+    menu_data_dinner_temp = []
+    
+    
+    # get request from url
+    page_to_scrape = requests.get("https://foodpro.ucr.edu/foodpro/shortmenu.asp?sName=University%20of%20California%2C%20Riverside%20Dining%20Services&locationNum=03&locationName=Glasgow&naFlag=1&_gl=1*11j1pjy*_ga*NTQ4ODY0ODA5LjE2ODQxODUxNDQ.*_ga_S8BZQKWST2*MTY5OTk1Nzc3Mi4xMDYuMS4xNjk5OTU5NjA2LjAuMC4w*_ga_Z1RGSBHBF7*MTY5OTk1Nzc3Mi4xMDYuMS4xNjk5OTU5NjA2LjAuMC4w")
+    soup = BeautifulSoup(page_to_scrape.text, "html.parser")
+    # scrape for data and put into db
+    full_table = soup.find("table", attrs={"bordercolorlight": "black"})
+    food_day_tables = full_table.findAll("td", attrs={"width": "30%"})
+    
+    for table in food_day_tables:
+        food_day = table.find("div", attrs={"class": "shortmenumeals"}).text #time of day
+        foods = table.findAll('a', attrs={"name": "Recipe_Desc"}) #each food
+        food_rows = table.findAll('div')
+        for category in food_rows:
+            if food_day == "Breakfast":
+                if category['class'][0] == 'shortmenucats' or category['class'][0] == 'shortmenurecipes':
+                    menu_data_breakfast_temp.append(category.text)
+            elif food_day == "Lunch":
+                if category['class'][0] == 'shortmenucats' or category['class'][0] == 'shortmenurecipes':
+                    menu_data_lunch_temp.append(category.text)
+            elif food_day == "Dinner":
+                if category['class'][0] == 'shortmenucats' or category['class'][0] == 'shortmenurecipes':
+                    menu_data_dinner_temp.append(category.text)
+    
+    #breakfast category append
+    menu_fresh_baked_pastries = np.append(menu_data_breakfast_temp[menu_data_breakfast_temp.index('-- Fresh Baked Pastries --')+1:menu_data_breakfast_temp.index('-- Cereal Station --')], menu_fresh_baked_pastries)
+    menu_cereal_station = np.append(menu_data_breakfast_temp[menu_data_breakfast_temp.index('-- Cereal Station --')+1:menu_data_breakfast_temp.index('-- Breakfast Offerings --')], menu_cereal_station)
+    menu_breakfast_offerings = np.append(menu_data_breakfast_temp[menu_data_breakfast_temp.index('-- Breakfast Offerings --')+1:len(menu_data_breakfast_temp)], menu_breakfast_offerings)
+    
+    #lunch category append
+    menu_salad_deli_and_more_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Salad, Deli and More --')+1:menu_data_lunch_temp.index('-- Wok Kitchen --')], menu_salad_deli_and_more_lunch)
+    menu_wok_kitchen_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Wok Kitchen --')+1:menu_data_lunch_temp.index('-- Hot Plate --')], menu_wok_kitchen_lunch)
+    menu_hot_plate_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Hot Plate --')+1:menu_data_lunch_temp.index('-- Three-Sixty Grill --')], menu_hot_plate_lunch)
+    menu_three_sixty_grill_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Three-Sixty Grill --')+1:menu_data_lunch_temp.index('-- The Carvery --')], menu_three_sixty_grill_lunch)
+    menu_the_carvery_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- The Carvery --')+1:menu_data_lunch_temp.index('-- Sweets & Treats --')], menu_the_carvery_lunch)
+    menu_sweets_and_treats_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Sweets & Treats --')+1:menu_data_lunch_temp.index('-- Build Your Own Vegan Bowl --')],menu_sweets_and_treats_lunch)
+    menu_build_your_own_vegan_bowl_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Build Your Own Vegan Bowl --')+1:len(menu_data_lunch_temp)], menu_build_your_own_vegan_bowl_lunch)
+    
+    #dinner category append
+    menu_salad_deli_and_more_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Salad, Deli and More --')+1:menu_data_dinner_temp.index('-- Wok Kitchen --')], menu_salad_deli_and_more_dinner)
+    menu_wok_kitchen_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Wok Kitchen --')+1:menu_data_dinner_temp.index('-- Hot Plate --')], menu_wok_kitchen_dinner)
+    menu_hot_plate_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Hot Plate --')+1:menu_data_dinner_temp.index('-- Three-Sixty Grill --')], menu_hot_plate_dinner)
+    menu_three_sixty_grill_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Three-Sixty Grill --')+1:menu_data_dinner_temp.index('-- The Carvery --')], menu_three_sixty_grill_dinner)
+    menu_the_carvery_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- The Carvery --')+1:menu_data_dinner_temp.index('-- Sweets & Treats --')], menu_the_carvery_dinner)
+    menu_sweets_and_treats_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Sweets & Treats --')+1:menu_data_dinner_temp.index('-- Build Your Own Vegan Bowl --')],menu_sweets_and_treats_dinner)
+    menu_build_your_own_vegan_bowl_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Build Your Own Vegan Bowl --')+1:len(menu_data_dinner_temp)], menu_build_your_own_vegan_bowl_dinner)
         
     # render html to django localhost
     return render(request, 'index.html', {'FreshBakedPastries': menu_fresh_baked_pastries,
@@ -189,4 +222,23 @@ def home(request):
                                           'ThreeSixtyGrillDinner': menu_three_sixty_grill_dinner,
                                           'TheCarveryDinner': menu_the_carvery_dinner,
                                           'SweetsAndTreatsDinner': menu_sweets_and_treats_dinner,
-                                          'BuildYourOwnVeganBowlDinner': menu_build_your_own_vegan_bowl_dinner,})
+                                          'BuildYourOwnVeganBowlDinner': menu_build_your_own_vegan_bowl_dinner,
+                                          
+                                          'BuildYourOwnBowlLunch': menu_build_your_own_bowl_lunch,
+                                          'SoupAndDeliBarLunch': menu_soup_and_deli_bar_lunch,
+                                          'GlobalSizzleLunch': menu_global_sizzle_lunch,
+                                          'UrbanKitchenLunch': menu_urban_kitchen_lunch,
+                                          'TheGrillLunch' : menu_the_grill_lunch,
+                                          'ComfortTableLunch' : menu_comfort_table_lunch,
+                                          'DessertsLunch' : menu_desserts_lunch,
+                                          'VillageGardenLunch' : menu_village_garden_lunch,
+                                          
+                                          'BuildYourOwnBowlDinner': menu_build_your_own_bowl_dinner,
+                                          'SoupAndDeliBarDinner': menu_soup_and_deli_bar_dinner,
+                                          'GlobalSizzleDinner': menu_global_sizzle_dinner,
+                                          'UrbanKitchenDinner': menu_urban_kitchen_dinner,
+                                          'TheGrillDinner' : menu_the_grill_dinner,
+                                          'ComfortTableDinner' : menu_comfort_table_dinner,
+                                          'DessertsDinner' : menu_desserts_dinner,
+                                          'VillageGardenDinner' : menu_village_garden_dinner })
+                                        
