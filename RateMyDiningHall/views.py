@@ -242,3 +242,5 @@ def home(request):
                                           'DessertsDinner' : menu_desserts_dinner,
                                           'VillageGardenDinner' : menu_village_garden_dinner })
                                         
+def reviews(request):
+    return render(request,'reviews.html')

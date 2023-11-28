@@ -17,8 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from RateMyDiningHall.views import home
-
+from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),
+    path('reviews/',views.reviews,name='reviews')
 ]
