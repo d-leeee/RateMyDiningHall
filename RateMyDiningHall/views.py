@@ -243,4 +243,6 @@ def home(request):
                                           'VillageGardenDinner' : menu_village_garden_dinner })
                                         
 def reviews(request):
-    return render(request,'reviews.html')
+    #after clicking hyperlink, recieve the food text
+    getFoodText = request.GET.get("name")
+    return render(request,'reviews.html', {'foodItem' : getFoodText})

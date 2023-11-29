@@ -17,15 +17,15 @@
               <h2>Breakfast</h2>
               <th>Fresh Baked Pastries</th>
               {% for food in FreshBakedPastries %} 
-                <td>{{ food }}</td>
+                <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
               {% endfor %}
               <th>Cereal Station</th>
               {% for food in CerealStation %} 
-                <td>{{ food }}</td>
+                <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
               {% endfor %}
               <th>Breakfast Offerings</th>
               {% for food in BreakfastOfferings %} 
-                <td>{{ food }}</td>
+                <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
               {% endfor %}
             </tr>
           </table>
@@ -36,27 +36,27 @@
             <h2>Lunch</h2>
             <th>Salad, Deli, and More</th>
             {% for food in SaladDeliAndMoreLunch %} 
-                <td>{{ food }}</td>
+                <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             <th>Wok Kitchen</th>
             {% for food in WokKitchenLunch %} 
-                <td>{{ food }}</td>
+                <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             <th>Three-Sixty Grill</th>
             {% for food in ThreeSixtyGrillLunch %} 
-                <td>{{ food }}</td>
+                <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             <th>The Carvery</th>
             {% for food in TheCarveryLunch %} 
-              <td>{{ food }}</td>
+              <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             <th>Sweets And Treats</th>
             {% for food in SweetsAndTreatsLunch %} 
-              <td>{{ food }}</td>
+              <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             <th>Build Your Own Vegan Bowl</th>
             {% for food in BuildYourOwnVeganBowlLunch %} 
-              <td>{{ food }}</td>
+              <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
           </tr>
         </table>
@@ -67,27 +67,27 @@
               <h2>Dinner</h2>
               <th>Salad, Deli, and More</th>
             {% for food in SaladDeliAndMoreDinner %} 
-                <td>{{ food }}</td>
+                <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             <th>Wok Kitchen</th>
             {% for food in WokKitchenDinner %} 
-                <td>{{ food }}</td>
+                <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             <th>Three-Sixty Grill</th>
             {% for food in ThreeSixtyGrillDinner %} 
-                <td>{{ food }}</td>
+                <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             <th>The Carvery</th>
             {% for food in TheCarveryDinner %} 
-              <td>{{ food }}</td>
+              <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             <th>Sweets And Treats</th>
             {% for food in SweetsAndTreatsDinner %} 
-              <td>{{ food }}</td>
+              <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             <th>Build Your Own Vegan Bowl</th>
             {% for food in BuildYourOwnVeganBowlDinner %} 
-              <td>{{ food }}</td>
+              <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             </tr>
           </table>
@@ -101,35 +101,35 @@
             <h2>Lunch</h2>
             <th>Build Your Own Bowl</th>
             {% for food in BuildYourOwnBowlLunch %} 
-                <td>{{ food }}</td>
+                <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             <th>Soup And Deli Bar</th>
             {% for food in SoupAndDeliBarLunch %} 
-                <td>{{ food }}</td>
+                <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             <th>Global Sizzle</th>
             {% for food in GlobalSizzleLunch %} 
-                <td>{{ food }}</td>
+                <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             <th>Urban Kitchen</th>
             {% for food in UrbanKitchenLunch %} 
-              <td>{{ food }}</td>
+              <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             <th>The Grill</th>
             {% for food in TheGrillLunch %} 
-              <td>{{ food }}</td>
+              <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             <th>Comfort Table</th>
             {% for food in ComfortTableLunch %} 
-              <td>{{ food }}</td>
+              <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             <th>Desserts</th>
             {% for food in DessertsLunch %} 
-              <td>{{ food }}</td>
+              <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
             <th>Village Garden</th>
             {% for food in VillageGardenLunch %} 
-              <td>{{ food }}</td>
+              <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
             {% endfor %}
           </tr>
         </table>
@@ -140,35 +140,35 @@
               <h2>Dinner</h2>
               <th>Build Your Own Bowl</th>
               {% for food in BuildYourOwnBowlDinner %} 
-                  <td>{{ food }}</td>
+                  <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
               {% endfor %}
               <th>Soup And Deli Bar</th>
               {% for food in SoupAndDeliBarDinner %} 
-                  <td>{{ food }}</td>
+                  <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
               {% endfor %}
               <th>Global Sizzle</th>
               {% for food in GlobalSizzleDinner %} 
-                  <td>{{ food }}</td>
+                  <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
               {% endfor %}
               <th>Urban Kitchen</th>
               {% for food in UrbanKitchenDinner %} 
-                <td>{{ food }}</td>
+                <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
               {% endfor %}
               <th>The Grill</th>
               {% for food in TheGrillDinner %} 
-                <td>{{ food }}</td>
+                <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
               {% endfor %}
               <th>Comfort Table</th>
               {% for food in ComfortTableDinner %} 
-                <td>{{ food }}</td>
+                <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
               {% endfor %}
               <th>Desserts</th>
               {% for food in DessertsDinner %} 
-                <td>{{ food }}</td>
+                <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
               {% endfor %}
               <th>Village Garden</th>
               {% for food in VillageGardenDinner %} 
-                <td>{{ food }}</td>
+                <td><a href="reviews?name={{ food }}">{{ food }}</a></td>
               {% endfor %}
             </tr>
           </table>
