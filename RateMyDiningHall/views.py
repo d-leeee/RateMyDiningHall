@@ -112,26 +112,27 @@ def home(request):
                 if category['class'][0] == 'shortmenucats' or category['class'][0] == 'shortmenurecipes':
                     menu_data_dinner_temp.append(category.text)
     
-    #lunch category append
-    menu_build_your_own_bowl_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- BYOB (Build Your Own Bowl) --')+1:menu_data_lunch_temp.index('-- Soup & Deli Bar --')], menu_build_your_own_bowl_lunch)
-    menu_soup_and_deli_bar_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Soup & Deli Bar --')+1:menu_data_lunch_temp.index('-- Global Sizzle --')], menu_soup_and_deli_bar_lunch)
-    menu_global_sizzle_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Global Sizzle --')+1:menu_data_lunch_temp.index('-- Urban Kitchen --')], menu_global_sizzle_lunch)
-    menu_urban_kitchen_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Urban Kitchen --')+1:menu_data_lunch_temp.index('-- The Grill --')], menu_urban_kitchen_lunch)
-    menu_the_grill_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- The Grill --')+1:menu_data_lunch_temp.index('-- Comfort Table --')], menu_the_grill_lunch)
-    menu_comfort_table_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Comfort Table --')+1:menu_data_lunch_temp.index('-- Desserts --')],menu_comfort_table_lunch)
-    menu_desserts_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Desserts --')+1:menu_data_lunch_temp.index('-- Village Garden --')],menu_desserts_lunch)
-    menu_village_garden_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Village Garden --')+1:len(menu_data_lunch_temp)], menu_village_garden_lunch)
+    if '-- BYOB (Build Your Own Bowl) --' in menu_build_your_own_bowl_lunch:
+        #lunch category append
+        menu_build_your_own_bowl_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- BYOB (Build Your Own Bowl) --')+1:menu_data_lunch_temp.index('-- Soup & Deli Bar --')], menu_build_your_own_bowl_lunch)
+        menu_soup_and_deli_bar_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Soup & Deli Bar --')+1:menu_data_lunch_temp.index('-- Global Sizzle --')], menu_soup_and_deli_bar_lunch)
+        menu_global_sizzle_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Global Sizzle --')+1:menu_data_lunch_temp.index('-- Urban Kitchen --')], menu_global_sizzle_lunch)
+        menu_urban_kitchen_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Urban Kitchen --')+1:menu_data_lunch_temp.index('-- The Grill --')], menu_urban_kitchen_lunch)
+        menu_the_grill_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- The Grill --')+1:menu_data_lunch_temp.index('-- Comfort Table --')], menu_the_grill_lunch)
+        menu_comfort_table_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Comfort Table --')+1:menu_data_lunch_temp.index('-- Desserts --')],menu_comfort_table_lunch)
+        menu_desserts_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Desserts --')+1:menu_data_lunch_temp.index('-- Village Garden --')],menu_desserts_lunch)
+        menu_village_garden_lunch = np.append(menu_data_lunch_temp[menu_data_lunch_temp.index('-- Village Garden --')+1:len(menu_data_lunch_temp)], menu_village_garden_lunch)
 
-    #dinner category append
-    menu_build_your_own_bowl_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- BYOB (Build Your Own Bowl) --')+1:menu_data_dinner_temp.index('-- Soup & Deli Bar --')], menu_build_your_own_bowl_dinner)
-    menu_soup_and_deli_bar_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Soup & Deli Bar --')+1:menu_data_dinner_temp.index('-- Global Sizzle --')], menu_soup_and_deli_bar_dinner)
-    menu_global_sizzle_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Global Sizzle --')+1:menu_data_dinner_temp.index('-- Urban Kitchen --')], menu_global_sizzle_dinner)
-    menu_urban_kitchen_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Urban Kitchen --')+1:menu_data_dinner_temp.index('-- The Grill --')], menu_urban_kitchen_dinner)
-    menu_the_grill_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- The Grill --')+1:menu_data_dinner_temp.index('-- Comfort Table --')], menu_the_grill_dinner)
-    menu_comfort_table_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Comfort Table --')+1:menu_data_dinner_temp.index('-- Desserts --')],menu_comfort_table_dinner)
-    menu_desserts_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Desserts --')+1:menu_data_dinner_temp.index('-- Village Garden --')],menu_desserts_dinner)
-    menu_village_garden_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Village Garden --')+1:len(menu_data_dinner_temp)], menu_village_garden_dinner)
-    
+        #dinner category append
+        menu_build_your_own_bowl_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- BYOB (Build Your Own Bowl) --')+1:menu_data_dinner_temp.index('-- Soup & Deli Bar --')], menu_build_your_own_bowl_dinner)
+        menu_soup_and_deli_bar_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Soup & Deli Bar --')+1:menu_data_dinner_temp.index('-- Global Sizzle --')], menu_soup_and_deli_bar_dinner)
+        menu_global_sizzle_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Global Sizzle --')+1:menu_data_dinner_temp.index('-- Urban Kitchen --')], menu_global_sizzle_dinner)
+        menu_urban_kitchen_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Urban Kitchen --')+1:menu_data_dinner_temp.index('-- The Grill --')], menu_urban_kitchen_dinner)
+        menu_the_grill_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- The Grill --')+1:menu_data_dinner_temp.index('-- Comfort Table --')], menu_the_grill_dinner)
+        menu_comfort_table_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Comfort Table --')+1:menu_data_dinner_temp.index('-- Desserts --')],menu_comfort_table_dinner)
+        menu_desserts_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Desserts --')+1:menu_data_dinner_temp.index('-- Village Garden --')],menu_desserts_dinner)
+        menu_village_garden_dinner = np.append(menu_data_dinner_temp[menu_data_dinner_temp.index('-- Village Garden --')+1:len(menu_data_dinner_temp)], menu_village_garden_dinner)
+        
     # keep these variables at none so that we dont get unassigned errors
     menu_salad_deli_and_more_lunch = np.array([])
     menu_wok_kitchen_lunch = np.array([])
