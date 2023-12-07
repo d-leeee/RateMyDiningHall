@@ -1,10 +1,12 @@
 from django.db import models
 
 class Database(models.Model):
-    food = models.CharField(max_length = 200)
+    name = models.CharField(max_length=50)
+    stars =  models.IntegerField(max_length=50)
+    review =  models.CharField(max_length=600)
     
-    def __str__(self):
-        return self.name
+    class Meta:
+        db_table = 'reviews'
     
 class Item(models.Model):
     database = models.ForeignKey(Database, on_delete=models.CASCADE)

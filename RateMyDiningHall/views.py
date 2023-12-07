@@ -242,8 +242,18 @@ def home(request):
                                           'ComfortTableDinner' : menu_comfort_table_dinner,
                                           'DessertsDinner' : menu_desserts_dinner,
                                           'VillageGardenDinner' : menu_village_garden_dinner })
-                                        
+    
+from RateMyDiningHall.models import Database                                      
 def reviews(request):
     #after clicking hyperlink, recieve the food text
     getFoodText = request.GET.get("name")
+    
+    if request.method=='POST':
+        if request.POST.get('name') and request.POST.get('stars') and request.POST.get('review'):
+            save = Database()
+            save.name = request.POST.get('name')
+            save.stars = request.POST.get('stars')
+            save.review = request.POST.get('review')
+            save.save()
+        
     return render(request,'reviews.html', {'foodItem' : getFoodText})
