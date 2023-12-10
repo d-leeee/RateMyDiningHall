@@ -2,7 +2,8 @@ cd C:\Users\danie\OneDrive\Documents\CS
 .\env\Scripts\activate
 cd RateMyDiningHall
 
-python manage.py runserver
 
+python manage.py runserver 
 
+153.33.99.166:8000
 CNTRL C to exit env
