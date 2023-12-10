@@ -10,6 +10,10 @@
 import mysql.connector
 from bs4 import BeautifulSoup
 import requests
+from RateMyDiningHall.models import Database 
+from django.shortcuts import render
+import numpy as np
+import functools
 
 # connect to mysql db
 mydb = mysql.connector.connect(
@@ -61,9 +65,7 @@ mydb.commit()
 #
 #
 
-from django.shortcuts import render
-import numpy as np
-import functools
+
 
 def home(request):
 
@@ -242,18 +244,19 @@ def home(request):
                                           'ComfortTableDinner' : menu_comfort_table_dinner,
                                           'DessertsDinner' : menu_desserts_dinner,
                                           'VillageGardenDinner' : menu_village_garden_dinner })
-    
-from RateMyDiningHall.models import Database                                      
+                                 
 def reviews(request):
     #after clicking hyperlink, recieve the food text
-    getFoodText = request.GET.get("name")
-    
+    request.session['getFoodText'] = request.GET.get("name")
+    return render(request,'reviews.html', {'foodItem' : request.session['getFoodText']})
+
+def submitReview(request):
     if request.method=='POST':
         if request.POST.get('name') and request.POST.get('stars') and request.POST.get('review'):
             save = Database()
             save.name = request.POST.get('name')
             save.stars = request.POST.get('stars')
             save.review = request.POST.get('review')
+            save.food_name = request.session['getFoodText']
             save.save()
-        
-    return render(request,'reviews.html', {'foodItem' : getFoodText})
+    return render(request,'reviews.html')

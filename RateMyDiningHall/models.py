@@ -4,6 +4,7 @@ class Database(models.Model):
     name = models.CharField(max_length=50)
     stars =  models.IntegerField(max_length=50)
     review =  models.CharField(max_length=600)
+    food_name = models.CharField(max_length=600)
     
     class Meta:
         db_table = 'reviews'
