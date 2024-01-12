@@ -28,6 +28,9 @@
             <input type='submit' name='submit' value='Submit Review'>
             {% csrf_token %}
         </form>
-
+        {% for foods in foodDatabase %}
+            <a>{{foods.name}}, {{foods.review}},{{foods.stars}},{{foods.food_name}}</a>
+            </br>
+        {% endfor %}
     </body>
 </html>

@@ -7,8 +7,8 @@ class Database(models.Model):
     food_name = models.CharField(max_length=600)
     
     class Meta:
-        db_table = 'reviews'
-    
+        db_table = "reviews"
+        
 class Item(models.Model):
     database = models.ForeignKey(Database, on_delete=models.CASCADE)
     text = models.CharField(max_length = 200)

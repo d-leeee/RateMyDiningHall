@@ -10,7 +10,7 @@
 import mysql.connector
 from bs4 import BeautifulSoup
 import requests
-from RateMyDiningHall.models import Database 
+from .models import Database 
 from django.shortcuts import render
 import numpy as np
 import functools
@@ -273,7 +273,8 @@ def home(request):
 def reviews(request):
     #after clicking hyperlink, recieve the food text
     request.session['getFoodText'] = request.GET.get("name")
-    return render(request,'reviews.html', {'foodItem' : request.session['getFoodText']})
+    foods = Database.objects.all().values()
+    return render(request,'reviews.html', {'foodItem' : request.session['getFoodText'], 'foodDatabase': foods})
 
 def submitReview(request):
     if request.method=='POST':
