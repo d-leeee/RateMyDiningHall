@@ -285,4 +285,7 @@ def submitReview(request):
             save.review = request.POST.get('review')
             save.food_name = request.session['getFoodText']
             save.save()
-    return render(request,'reviews.html', {'foodItem' : request.session['getFoodText']})
+            
+    foods = Database.objects.all().values()
+    
+    return render(request,'reviews.html', {'foodItem' : request.session['getFoodText'],'foodDatabase': foods})
