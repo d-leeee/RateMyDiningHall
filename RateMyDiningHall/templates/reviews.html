@@ -23,6 +23,7 @@
         <form name='reviews' method='post' action='submitReview'>
             {% csrf_token %}
             Name         : <input type='text' name='name' value=''></br>
+            Email        : <input type="text" name='email' value=''></br>
             Star Rating  : <input type='text' name='stars' value=''></br>
             Write Review : <input type='text' name='review' value=''></br>
             <input type='submit' name='submit' value='Submit Review'>

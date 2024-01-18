@@ -278,13 +278,17 @@ def reviews(request):
 
 def submitReview(request):
     if request.method=='POST':
-        if request.POST.get('name') and request.POST.get('stars') and request.POST.get('review'):
-            save = Database()
-            save.name = request.POST.get('name')
-            save.stars = request.POST.get('stars')
-            save.review = request.POST.get('review')
-            save.food_name = request.session['getFoodText']
-            save.save()
+        if request.POST.get('name') and request.POST.get('stars') and request.POST.get('review') and request.POST.get('email'):
+            try:
+                save = Database()
+                save.name = request.POST.get('name')
+                save.email = request.POST.get('email')
+                save.stars = request.POST.get('stars')
+                save.review = request.POST.get('review')
+                save.food_name = request.session['getFoodText']
+                save.save()
+            except:
+                pass
             
     foods = Database.objects.all().values()
     
